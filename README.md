@@ -134,7 +134,7 @@ Error Responses
 }
 ```
 
-# LOGOUT
+### LOGOUT
 
 Logout API
 
