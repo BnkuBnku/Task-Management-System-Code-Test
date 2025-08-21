@@ -134,6 +134,42 @@ Error Responses
 }
 ```
 
+# LOGOUT
+
+Logout API
+
+Endpoint:
+```sh
+/logout
+```
+
+Response
+Success (200 OK):
+```sh
+{
+    "message": "Logged out successfully."
+}
+```
+
+Error Responses:
+Unauthorized (if token is missing or invalid):
+```
+{
+    "message": "Unauthenticated."
+}
+```
+Description:
+Logs out the authenticated user by revoking their current access token. No payload is required.
+
+Request
+
+Headers:
+
+Authorization: Bearer {access_token} → Required to identify the current user.
+
+Body:
+
+None (no payload required).
 ### TASK (FETCH)
 
 Fetch Tasks
