@@ -1,0 +1,535 @@
+{
+	"info": {
+		"_postman_id": "3dca6162-8a4c-4465-a0fe-1152a02c80a3",
+		"name": "Task Management System",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "47738901",
+		"_collection_link": "https://bnkubnku-2013158.postman.co/workspace/Cyrex-Joshua-Cuizon's-Workspace~175d9372-16f7-460a-831c-1b2289c63fcc/collection/47738901-3dca6162-8a4c-4465-a0fe-1152a02c80a3?action=share&source=collection_link&creator=47738901"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let jsonData = pm.response.json();",
+									"let token = jsonData.success;",
+									"pm.environment.set('access-token',\"Bearer \"+token);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-Requested-With",
+								"value": "{{X-Requested-With}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"admin@admin.com\",\n    \"password\": \"AdminAdmin!23\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/login",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"login"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								},
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-Requested-With",
+								"value": "{{X-Requested-With}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Nicky\",\n    \"email\": \"sample@gmail.com\",\n    \"password\": \"Samplesample!23\",\n    \"confirm_password\": \"Samplesample!23\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/register",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"register"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								},
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								},
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Task",
+			"item": [
+				{
+					"name": "Fetch",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-Requested-With",
+								"value": "{{X-Requested-With}}",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{access-token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"keyword\": \"awd\",\n    \"status\": \"\",\n    \"priority\": \"\",\n    \"take\": 10,\n    \"skip\": 0\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/task/fetch",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"task",
+								"fetch"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Store",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-Requested-With",
+								"value": "{{X-Requested-With}}",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{access-token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"Sample Title\",\n    \"description\": \"Sample Description\",\n    \"status\": \"pending\",\n    \"priority\": \"low\",\n    \"order\": \"1\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/task/store",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"task",
+								"store"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "X-Requested-With",
+								"value": "{{X-Requested-With}}",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{access-token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"Sample Title\",\n    \"description\": \"Sample Description\",\n    \"status\": \"completed\",\n    \"priority\": \"low\",\n    \"order\": \"1\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/task/update/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"task",
+								"update",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "X-Requested-With",
+								"value": "{{X-Requested-With}}",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{access-token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/task/delete/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"task",
+								"delete",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Fetch",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-Requested-With",
+								"value": "{{X-Requested-With}}",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{access-token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"keyword\": \"\",\n    \"status\": \"\",\n    \"priority\": \"\",\n    \"take\": 10,\n    \"skip\": 0\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/user/fetch",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"user",
+								"fetch"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "X-Requested-With",
+								"value": "{{X-Requested-With}}",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{access-token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Sample Title\",\n    \"email\": \"Sample Description\",\n    \"password\": \"\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/user/update/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"user",
+								"update",
+								"1"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "1",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "X-Requested-With",
+								"value": "{{X-Requested-With}}",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{access-token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/user/delete/2",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"user",
+								"delete",
+								"2"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "1",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Logout",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{access-token}}",
+						"type": "text"
+					},
+					{
+						"key": "X-Requested-With",
+						"value": "{{X-Requested-With}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{url}}/logout",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"logout"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
